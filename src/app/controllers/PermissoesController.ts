@@ -1,53 +1,26 @@
-import { 
-    Get,
-    QueryParam,
-    OnUndefined,
-    Param,
-    Post,
-    Body,
-    Put,
-    Delete,
-    JsonController
-} from "routing-controllers";
-import { Permissao } from "../models/Permissao";
+import { Request, Response } from "express";
 
-@JsonController("/permissoes")
-export class PermissoesController {
+class PermissoesController {
 
-    @Get()
-    index(@QueryParam("nome") nome: string) {
-
-        const where: any = {};
-
-        if (nome) {
-            where.nome = nome;
-        }
-
-        return [];
+    async index(req: Request, res: Response) {
+        return res.json([]);
     }
 
-    @Get("/:id")
-    @OnUndefined(404)
-    show(@Param("id") id: number) {
-
-        return { message: "Not implemented" };
+    async show(req: Request, res: Response) {
+        return res.json({ message: "Not implemented" });
     }
 
-    @Post()
-    async store(@Body() permissao: Permissao) {
-
-        return { message: "Not implemented" };
+    async store(req: Request, res: Response) {
+        return res.json({ message: "Not implemented" });
     }
 
-    @Put("/:id")
-    async update(@Param("id") id: number, @Body() permissao: Permissao) {
-
-        return { message: "Not implemented" };
+    async update(req: Request, res: Response) {
+        return res.json({ message: "Not implemented" });
     }
 
-    @Delete("/:id")
-    async destroy(@Param("id") id: number) {
-        
-        return { message: "Not implemented" };
+    async destroy(req: Request, res: Response) {        
+        return res.json({ message: "Not implemented" });
     }
 }
+
+export default new PermissoesController();

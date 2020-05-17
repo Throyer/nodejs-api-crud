@@ -1,8 +1,8 @@
 import bodyParser from "body-parser";
 import express from "express";
 import "reflect-metadata";
-import { useExpressServer } from "routing-controllers";
 import { createConnection } from "typeorm";
+import routes from "./src/app/routes"
 
 const port = 8080;
 
@@ -14,11 +14,7 @@ createConnection()
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
 
-        useExpressServer(app, {
-            validation: true,
-            routePrefix: `/api`,
-            controllers: [__dirname + "/src/app/controllers/*.ts"]
-        });
+        app.use(routes);
 
         app.listen(port, () => console.info(`started on http://localhost:${port}/api`));
     })
